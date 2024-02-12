@@ -1,6 +1,7 @@
 const wheelImage = document.getElementById('wheel');
-const spinButton = document.getElementById('btn-spin');
-const resultSpan = document.getElementById('marker');
+const markerImage = document.getElementById('marker');
+const spinButton = document.getElementById('spin-button');
+const resultSpan = document.getElementById('result');
 
 // Static endpoint data (replace with actual API call if needed)
 const endpointData = { POSITION: 2 };
@@ -17,6 +18,9 @@ spinButton.addEventListener('click', () => {
         // Calculate rotation angle based on POSITION and number of wheel segments
         const numSegments = 3; // Replace with actual number of segments
         const rotationAngle = 360 * endpointData.POSITION / numSegments;
+
+        // Adjust marker position before spinning
+        markerImage.style.transform = `rotate(${rotationAngle}deg)`;
 
         wheelImage.style.animationDuration = spinTime + 'ms';
         wheelImage.style.animationTimingFunction = 'linear'; // Adjust for smoother stopping
