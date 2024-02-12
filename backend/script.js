@@ -6,6 +6,7 @@ const resultSpan = document.getElementById('result');
 // Static endpoint data (replace with actual API call if needed)
 const endpointData = { POSITION: 2 };
 
+
 let isSpinning = false;
 
 spinButton.addEventListener('click', () => {
@@ -15,7 +16,7 @@ spinButton.addEventListener('click', () => {
         // Simulate random time between 2-5 seconds for spinning
         const spinTime = Math.random() * 3000 + 2000;
 
-        // Calculate rotation angle based on POSITION and number of wheel segments
+        
         const numSegments = 3; // Replace with actual number of segments
         const rotationAngle = 360 * endpointData.POSITION / numSegments;
 
