@@ -1,0 +1,19 @@
+{
+  "name": "backendwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concat": "^1.0.3",
+    "html-minifier": "^4.0.0",
+    "less": "^4.2.0",
+    "sass": "^1.70.0",
+    "uglify-js": "^3.17.4"
+  }
+}
