@@ -17,5 +17,8 @@
     "less": "^4.2.0",
     "sass": "^1.70.0",
     "uglify-js": "^3.17.4"
+  },
+  "dependencies": {
+    "pixi.js": "^7.4.0"
   }
 }

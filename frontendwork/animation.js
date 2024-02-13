@@ -8,17 +8,26 @@ const app = new PIXI.Application({
 });
 
 // Add the canvas to the HTML document
-document.body.appendChild(app.view);
+const canvas = app.view;
+document.body.appendChild(canvas);
 
 // Load all images
 const loader = PIXI.Loader.shared;
-loader.add('vegas', 'vegas_image_with_lights.png')
-      .add('slots', 'slots_image_with_lights.png')
-      .add('showdown', 'showdown_image_with_lights_0.png') // Add the other 7 images similarly
-      .add('bolt_on', 'bolt_on.png')
-      .add('bolt_off', 'bolt_off.png')
-      .add('must_drop_jackpots', 'must_drop_jackpots.png')
-      .add('no_lights', 'no_lights_image.png')
+loader.add('vegas', 'vegas@2x.png')
+      .add('slots', 'slots@2x.png')
+      .add('showdown_s', 's@2x.png')
+      .add('showdown_h', 'h@2x.png')
+      .add('showdown_o1', 'o-1@2x.png')
+      .add('showdown_w1', 'w-1@2x.png')
+      .add('showdown_d', 'd@2x.png')
+      .add('showdown_o2', 'o-2@2x.png')
+      .add('showdown_w2', 'w-2@2x.png')
+      .add('showdown_n', 'n@2x.png')
+      .add('showdown_no_lights', 'showdown-off.png') // Add the showdown image with no lights
+      .add('bolt_on', 'bolt@2x.png')
+      .add('bolt_off', 'bolt-off@2x.png')
+      .add('must_drop_jackpots', 'must_drop.png')
+      .add('no_lights', 'header.png')
       .load(setup);
 
 // Setup function after loading resources
@@ -26,11 +35,12 @@ function setup() {
     // Create sprites
     const vegas = new PIXI.Sprite(loader.resources['vegas'].texture);
     const slots = new PIXI.Sprite(loader.resources['slots'].texture);
-    const showdown = new PIXI.Sprite(loader.resources['showdown'].texture); // Use other textures similarly
+    const showdown = new PIXI.Sprite(loader.resources['showdown_s'].texture);
     const boltOn = new PIXI.Sprite(loader.resources['bolt_on'].texture);
     const boltOff = new PIXI.Sprite(loader.resources['bolt_off'].texture);
     const mustDropJackpots = new PIXI.Sprite(loader.resources['must_drop_jackpots'].texture);
     const noLights = new PIXI.Sprite(loader.resources['no_lights'].texture);
+    const showdownNoLights = new PIXI.Sprite(loader.resources['showdown_no_lights'].texture);
 
     // Arrange sprites
     vegas.position.set(100, 100);
@@ -40,9 +50,10 @@ function setup() {
     boltOff.position.set(700, 100); // Initially hide off image
     mustDropJackpots.position.set(300, 300);
     noLights.position.set(100, 400);
+    showdownNoLights.position.set(500, 400); // Position showdown without lights
 
     // Add sprites to the stage
-    app.stage.addChild(vegas, slots, showdown, boltOn, boltOff, mustDropJackpots, noLights);
+    app.stage.addChild(vegas, slots, showdown, boltOn, boltOff, mustDropJackpots, noLights, showdownNoLights);
 
     // Start the animation loop
     app.ticker.add(animate);
@@ -50,21 +61,19 @@ function setup() {
 
 // Animation loop
 function animate() {
-    // Update animation logic here
-    // For example, handle flickering of the bolt every 10 seconds
-    // You can use setTimeout or setInterval to handle the flickering
     // Define a variable to keep track of the bolt's state (on or off)
-let isBoltOn = true;
+    let isBoltOn = true;
 
-// Animation loop
-function animate() {
     // Toggle bolt's visibility every 10 seconds
     setInterval(() => {
         isBoltOn = !isBoltOn; // Toggle the bolt's state
         boltOn.visible = isBoltOn; // Show or hide the bolt accordingly
         boltOff.visible = !isBoltOn; // Show or hide the off image accordingly
     }, 10000); // 10 seconds interval
+
+    // Call animate function recursively
+    requestAnimationFrame(animate);
 }
 
-}
-
+// Start the animation loop
+animate();
