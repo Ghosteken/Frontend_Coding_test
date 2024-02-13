@@ -1,0 +1,38 @@
+/* styles.css */
+.container {
+    text-align: center;
+    margin: 50px auto;
+}
+
+#wheel {
+    animation: spin 0s linear infinite;
+}
+
+#marker {
+    position: absolute; /* Place marker dynamically on wheel */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#spin-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#result {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
